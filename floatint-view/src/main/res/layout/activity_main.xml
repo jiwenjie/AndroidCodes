@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/radio_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="12dp"
+    android:orientation="vertical"
+    tools:context="jingya.com.floatingview.MainActivity">
+
+    <RadioButton
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:gravity="center_vertical"
+        android:text="Bar in Left"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
+
+    <RadioButton
+        android:id="@+id/top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:text="Bar in Top"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
+
+    <RadioButton
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:text="Bar in Right"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
+
+    <RadioButton
+        android:id="@+id/bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:text="Bar in Bottom"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp" />
+</RadioGroup>
