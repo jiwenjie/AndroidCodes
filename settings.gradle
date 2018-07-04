@@ -1,1 +1,1 @@
-include ':base-class-module', ':ios-notification', ':floatint-view', ':django_rest', ':ios12-notification'
+include ':base-class-module', ':ios-notification', ':floatint-view', ':django_rest', ':ios12-notification', ':base-kt-module'

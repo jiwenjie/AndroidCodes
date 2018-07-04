@@ -15,7 +15,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Scroller;
 
 /**
- * @author kuky.
+ * @author kuky
+ * @description
  */
 public class ParallaxRecyclerView extends RecyclerView {
 

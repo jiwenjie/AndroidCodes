@@ -1,4 +1,4 @@
-package jingya.com.base_class_module.BaseAdapter;
+package jingya.com.base_class_module.BaseAdapters;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -17,7 +17,14 @@ import java.util.List;
 
 /**
  * @author kuky
- * @description
+ * @description recyclerView adapter 封装类
+ * <p>
+ * 支持添加多个头部 {@link #addHeaderBinding(ViewDataBinding)}
+ * 支持添加多个尾部 {@link #addFooterBinding(ViewDataBinding)}
+ * 支持点击事件 {@link #setOnItemClickListener(OnItemClickListener)}
+ * 支持长按事件 {@link #setOnItemLongClickListener(OnItemLongClickListener)}
+ * 支持多布局，重写 {@link #getItemType(int)} 方法即可
+ * 支持单项选定 {@link #setSelectedItemPosition(int)}
  */
 public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<BaseRvHeaderFooterAdapter.BaseHeaderFooterHolder> {
     private static final int HEADER = 0x00100000;
@@ -28,10 +35,10 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
     protected List<T> mData;
     private LayoutInflater mInflater;
     protected int mSelectedPosition = -1;
-    private boolean mCloseRecycle;
+    private int mCurrentPosition = -1;
+    private boolean mCloseRecycle = false;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
-    private int mCurrentPosition;
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
@@ -42,9 +49,11 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
     }
 
     public BaseRvHeaderFooterAdapter(Context context) {
-        this(context, false);
+        this.mContext = context;
+        this.mInflater = LayoutInflater.from(mContext);
     }
 
+    @Deprecated
     public BaseRvHeaderFooterAdapter(Context context, boolean closeRecycle) {
         this.mContext = context;
         this.mInflater = LayoutInflater.from(mContext);
@@ -52,9 +61,12 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
     }
 
     public BaseRvHeaderFooterAdapter(Context context, List<T> data) {
-        this(context, data, false);
+        this.mContext = context;
+        this.mInflater = LayoutInflater.from(mContext);
+        this.mData = data;
     }
 
+    @Deprecated
     public BaseRvHeaderFooterAdapter(Context context, List<T> data, boolean closeRecycle) {
         this.mContext = context;
         this.mInflater = LayoutInflater.from(mContext);
@@ -75,8 +87,6 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
 
     /**
      * 当前选中项, 默认为 -1
-     *
-     * @param position
      */
     public void setSelectedItemPosition(int position) {
         mSelectedPosition = position;
@@ -101,6 +111,9 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
         notifyItemInserted(insertPos);
     }
 
+    /**
+     * 返回头部视图的 ViewDataBinding 列表
+     */
     public List<ViewDataBinding> getHeaderBindings() {
         List<ViewDataBinding> headers = new ArrayList<>();
         for (int i = HEADER; i < getHeaderCount() + HEADER; i++) {
@@ -109,6 +122,9 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
         return headers;
     }
 
+    /**
+     * 返回尾部视图的 ViewDataBinding 列表
+     */
     public List<ViewDataBinding> getFooterBindings() {
         List<ViewDataBinding> footers = new ArrayList<>();
         for (int i = FOOTER; i < getFooterCount() + FOOTER; i++) {
@@ -127,11 +143,6 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
         notifyDataSetChanged();
     }
 
-    public void updateAllData(List<T> data) {
-        this.mData = data;
-        this.notifyItemRangeChanged(0, mData.size());
-    }
-
     public List<T> getAdapterData() {
         return mData;
     }
@@ -142,13 +153,21 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
      * @param t
      */
     public void addData(T t) {
-        this.mData.add(t);
-        notifyDataSetChanged();
+        if (mData != null) {
+            this.mData.add(t);
+            notifyDataSetChanged();
+        } else {
+            throw new IllegalStateException("mData is null and init first");
+        }
     }
 
     public void addData(int position, T t) {
-        this.mData.add(position, t);
-        notifyDataSetChanged();
+        if (mData != null) {
+            this.mData.add(position, t);
+            notifyDataSetChanged();
+        } else {
+            throw new IllegalStateException("mData is null and init first");
+        }
     }
 
     /**
@@ -157,8 +176,12 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
      * @param data
      */
     public void addAllData(List<T> data) {
-        this.mData.addAll(data);
-        notifyDataSetChanged();
+        if (mData != null) {
+            this.mData.addAll(data);
+            notifyDataSetChanged();
+        } else {
+            throw new IllegalStateException("mData is null and init first");
+        }
     }
 
     /**
@@ -167,8 +190,12 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
      * @param t
      */
     public void removeData(T t) {
-        mData.remove(t);
-        notifyDataSetChanged();
+        if (mData != null && mData.contains(t)) {
+            mData.remove(t);
+            notifyDataSetChanged();
+        } else {
+            throw new IllegalStateException("data not in mData and check it");
+        }
     }
 
     /**
@@ -177,8 +204,12 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
      * @param position
      */
     public void removeData(int position) {
-        mData.remove(position);
-        notifyDataSetChanged();
+        if (mData != null) {
+            mData.remove(position);
+            notifyDataSetChanged();
+        } else {
+            throw new IllegalStateException("mData is null and init first");
+        }
     }
 
     /**
@@ -195,9 +226,6 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
 
     /**
      * 获取当前的 data 位置
-     *
-     * @param t
-     * @return
      */
     protected int getCurrentDataPosition(T t) {
         for (int i = 0; i < mData.size(); i++) {
@@ -212,7 +240,7 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
      * 头部长度
      */
     private int getHeaderCount() {
-        return mHeaderBindings == null ? 0 : mHeaderBindings.size();
+        return mHeaderBindings.size();
     }
 
     /**
@@ -226,21 +254,21 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
      * 底部长度
      */
     private int getFooterCount() {
-        return mFooterBindings == null ? 0 : mFooterBindings.size();
+        return mFooterBindings.size();
     }
 
     /**
      * 是否有头部
      */
     private boolean haveHeaderBinding() {
-        return mHeaderBindings != null;
+        return mHeaderBindings.size() > 0;
     }
 
     /**
      * 是否有底部
      */
     private boolean haveFooterBinding() {
-        return mFooterBindings != null;
+        return mFooterBindings.size() > 0;
     }
 
     /**
@@ -325,7 +353,9 @@ public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<
         else return getItemType(position - getHeaderCount());
     }
 
-    protected abstract int getItemType(int position);
+    protected int getItemType(int position) {
+        return 0;
+    }
 
     @Override
     public int getItemCount() {

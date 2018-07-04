@@ -14,7 +14,7 @@ import org.greenrobot.eventbus.EventBus;
 
 /**
  * @author kuky
- * @description
+ * @description 懒加载 fragment 基类
  */
 public abstract class BaseLazyLoadingFragment<VB extends ViewDataBinding> extends Fragment {
     protected VB mViewBinding;
@@ -31,8 +31,9 @@ public abstract class BaseLazyLoadingFragment<VB extends ViewDataBinding> extend
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (enabledEventBus())
+            EventBus.getDefault().register(this);
         mViewBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
-        if (enabledEventBus()) EventBus.getDefault().register(this);
         initFragment(savedInstanceState);
         setListener();
         return mViewBinding.getRoot();
@@ -52,7 +53,8 @@ public abstract class BaseLazyLoadingFragment<VB extends ViewDataBinding> extend
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (enabledEventBus()) EventBus.getDefault().unregister(this);
+        if (enabledEventBus())
+            EventBus.getDefault().unregister(this);
     }
 
     private void tryLoad() {
@@ -65,11 +67,15 @@ public abstract class BaseLazyLoadingFragment<VB extends ViewDataBinding> extend
 
     protected abstract int getLayoutId();
 
-    protected abstract boolean enabledEventBus();
-
     protected abstract void initFragment(Bundle savedInstanceState);
 
     protected abstract void lazyLoading();
 
-    protected abstract void setListener();
+    protected boolean enabledEventBus() {
+        return false;
+    }
+
+    protected void setListener() {
+
+    }
 }

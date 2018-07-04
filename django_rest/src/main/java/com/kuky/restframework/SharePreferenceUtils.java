@@ -7,9 +7,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
-
 public class SharePreferenceUtils {
     private static final String SHARED_PREFERENCES_NAME = "persistence";
 

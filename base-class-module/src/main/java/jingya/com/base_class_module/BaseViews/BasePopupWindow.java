@@ -13,7 +13,7 @@ import android.widget.PopupWindow;
 
 /**
  * @author kuky
- * @description
+ * @description popupWindow 基类
  */
 public abstract class BasePopupWindow<VB extends ViewDataBinding> extends PopupWindow {
     protected Context mContext;
@@ -58,5 +58,7 @@ public abstract class BasePopupWindow<VB extends ViewDataBinding> extends PopupW
 
     protected abstract int getLayoutId();
 
-    protected abstract void initPopupView();
+    protected void initPopupView() {
+
+    }
 }

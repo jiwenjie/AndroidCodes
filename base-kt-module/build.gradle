@@ -1,0 +1,87 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+def configs = rootProject.ext
+
+android {
+    compileSdkVersion configs.compileSdkVersion
+    buildToolsVersion configs.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion configs.minSdkVersion
+        targetSdkVersion configs.targetSdkVersion
+        versionCode configs.versionCode
+        versionName configs.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    kapt {
+        generateStubs = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation "junit:junit:$configs.junit"
+    androidTestImplementation "com.android.support.test:runner:$configs.runner"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$configs.espressoCore"
+    /**
+     * android ktx
+     */
+    api "androidx.core:core-ktx:$configs.ktx"
+    /**
+     * Android Design
+     */
+    api "com.android.support.constraint:constraint-layout:$configs.constraintLayout"
+    api "com.android.support:appcompat-v7:$configs.androidDesign"
+    api "com.android.support:support-v4:$configs.androidDesign"
+    api "com.android.support:design:$configs.androidDesign"
+    api "com.android.support:cardview-v7:$configs.androidDesign"
+    api "com.android.support:recyclerview-v7:$configs.androidDesign"
+    api "com.android.support:gridlayout-v7:$configs.androidDesign"
+    /**
+     * Glide
+     */
+    api "com.github.bumptech.glide:glide:$configs.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$configs.glide"
+    /**
+     * RxJava && OkHttp For Network
+     */
+    api "io.reactivex.rxjava2:rxandroid:$configs.rxAndroid"
+    api "io.reactivex.rxjava2:rxjava:$configs.rxJava"
+    api "com.squareup.retrofit2:retrofit:$configs.retrofit"
+    api "com.squareup.retrofit2:converter-gson:$configs.retrofit"
+    api "com.squareup.retrofit2:adapter-rxjava2:$configs.retrofit"
+    api "com.squareup.retrofit2:converter-scalars:$configs.retrofit"
+    api "com.squareup.okhttp3:logging-interceptor:$configs.okLogging"
+    /**
+     * EventBus
+     */
+    api "org.greenrobot:eventbus:$configs.eventbus"
+    /**
+     * LeakCanary
+     */
+    debugApi "com.squareup.leakcanary:leakcanary-android:$configs.leakcanary"
+    releaseApi "com.squareup.leakcanary:leakcanary-android-no-op:$configs.leakcanary"
+    /**
+     * CircleImageView
+     */
+    api "de.hdodenhof:circleimageview:$configs.circleimageview"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+repositories {
+    mavenCentral()
+}

@@ -1,9 +1,9 @@
 package jingya.com.iosnotificationapplication;
 
 /**
- * @author kuky.
+ * @author kuky
+ * @description
  */
-
 public class NotificationBean {
     private String notificationContent;
     private boolean isNewNotification;

@@ -5,19 +5,16 @@ import android.databinding.ViewDataBinding;
 
 import java.util.List;
 
-import jingya.com.base_class_module.BaseAdapter.BaseRvHeaderFooterAdapter;
+import jingya.com.base_class_module.BaseAdapters.BaseRvHeaderFooterAdapter;
 
 /**
- * @author kuky.
+ * @author kuky
+ * @description
  */
 public class NotificationAdapter extends BaseRvHeaderFooterAdapter<Object> {
     public static final int NOTIFICATION_TYPE = 0;
     public static final int BLANK_TYPE = 1;
     public static final int OTHER_TYPE = 2;
-
-    public NotificationAdapter(Context context) {
-        super(context);
-    }
 
     public NotificationAdapter(Context context, List<Object> data) {
         super(context, data);

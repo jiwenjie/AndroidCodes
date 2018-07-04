@@ -16,9 +16,9 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
- * @author kuky.
+ * @author kuky
+ * @description
  */
-
 public interface RetrofitApi {
 
     String DJANGO_BASE = "http://192.168.0.103:8080";

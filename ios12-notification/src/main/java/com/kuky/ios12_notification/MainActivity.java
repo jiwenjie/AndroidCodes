@@ -22,16 +22,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private ExpandNotificationAdapter mAdapter;
 
     @Override
-    protected boolean enableEventBus() {
-        return false;
-    }
-
-    @Override
-    protected boolean enableTransparentStatus() {
-        return false;
-    }
-
-    @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
     }

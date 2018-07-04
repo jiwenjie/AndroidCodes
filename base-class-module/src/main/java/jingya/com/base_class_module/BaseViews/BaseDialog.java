@@ -13,7 +13,7 @@ import jingya.com.base_class_module.R;
 
 /**
  * @author kuky
- * @description
+ * @description dialog 基类
  */
 public abstract class BaseDialog<VB extends ViewDataBinding> extends Dialog {
     protected VB mViewBinding;
@@ -65,5 +65,7 @@ public abstract class BaseDialog<VB extends ViewDataBinding> extends Dialog {
 
     protected abstract int getLayoutId();
 
-    protected abstract void initDialogView();
+    protected void initDialogView() {
+
+    }
 }

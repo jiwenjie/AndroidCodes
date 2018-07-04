@@ -1,9 +1,9 @@
 package com.kuky.restframework;
 
 /**
- * @author kuky.
+ * @author kuky
+ * @description
  */
-
 public class UserLogin {
 
     /**

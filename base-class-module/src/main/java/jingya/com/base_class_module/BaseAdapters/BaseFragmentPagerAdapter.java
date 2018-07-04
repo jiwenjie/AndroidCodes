@@ -1,4 +1,4 @@
-package jingya.com.base_class_module.BaseAdapter;
+package jingya.com.base_class_module.BaseAdapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author kuky
- * @description
+ * @description viewpager adapter 封装
  */
 public class BaseFragmentPagerAdapter extends FragmentPagerAdapter {
 
@@ -31,19 +31,8 @@ public class BaseFragmentPagerAdapter extends FragmentPagerAdapter {
         return mList.size();
     }
 
-    /**
-     * 绑定标题
-     *
-     * @param position
-     * @return
-     */
     @Override
     public CharSequence getPageTitle(int position) {
         return mTitles == null ? super.getPageTitle(position) : mTitles[position];
-    }
-
-    public void setTitles(String[] titles) {
-        this.mTitles = titles;
-        notifyDataSetChanged();
     }
 }

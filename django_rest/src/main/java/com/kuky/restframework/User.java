@@ -1,11 +1,9 @@
 package com.kuky.restframework;
 
-import java.util.List;
-
 /**
- * @author kuky.
+ * @author kuky
+ * @description
  */
-
 public class User {
 
     /**

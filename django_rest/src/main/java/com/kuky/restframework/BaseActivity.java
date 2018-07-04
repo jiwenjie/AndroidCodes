@@ -16,7 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public abstract class BaseActivity extends AppCompatActivity {
     private PermissionListener permissionListener;

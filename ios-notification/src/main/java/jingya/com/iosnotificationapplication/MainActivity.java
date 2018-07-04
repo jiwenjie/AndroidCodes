@@ -62,16 +62,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private boolean isDragUp;
 
     @Override
-    protected boolean enableEventBus() {
-        return false;
-    }
-
-    @Override
-    protected boolean enableTransparentStatus() {
-        return true;
-    }
-
-    @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
     }

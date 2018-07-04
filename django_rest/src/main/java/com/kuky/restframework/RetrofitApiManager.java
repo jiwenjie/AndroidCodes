@@ -17,7 +17,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public class RetrofitApiManager {
     private static final String TAG = "RetrofitApiManager";

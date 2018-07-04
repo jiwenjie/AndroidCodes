@@ -1,4 +1,4 @@
-package jingya.com.base_class_module.BaseAdapter;
+package jingya.com.base_class_module.BaseAdapters;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -12,7 +12,9 @@ import java.util.List;
 
 /**
  * @author kuky
- * @description
+ * @description listView adapter 封装类
+ * <p>
+ * 支持单项选定 {@link #setSelectedItemPosition(int)}
  */
 public abstract class BaseListViewAdapter<T, VB extends ViewDataBinding> extends BaseAdapter {
     protected VB mViewBinding;
@@ -35,8 +37,13 @@ public abstract class BaseListViewAdapter<T, VB extends ViewDataBinding> extends
     }
 
     public BaseListViewAdapter(Context context) {
+        this(context, null);
+    }
+
+    public BaseListViewAdapter(Context context, List<T> data) {
         this.mContext = context;
         this.mInflater = LayoutInflater.from(mContext);
+        this.mData = data;
     }
 
     @Override
@@ -65,7 +72,7 @@ public abstract class BaseListViewAdapter<T, VB extends ViewDataBinding> extends
         return mViewBinding.getRoot();
     }
 
-    protected abstract void setVariable(VB viewBinding, T t);
-
     protected abstract int getLayoutId();
+
+    protected abstract void setVariable(VB viewBinding, T t);
 }

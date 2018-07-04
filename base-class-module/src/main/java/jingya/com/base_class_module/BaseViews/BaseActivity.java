@@ -25,7 +25,11 @@ import jingya.com.base_class_module.PermissionListener;
 
 /**
  * @author kuky
- * @description
+ * @description Activity 基类
+ * <p>
+ * 支持 EventBus {@link #enableEventBus()}
+ * 支持透明状态栏 {@link #enableTransparentStatus()}
+ * 支持动态申请权限 {@link #onRuntimePermissionsAsk(String[], PermissionListener)}
  */
 public abstract class BaseActivity<VB extends ViewDataBinding> extends AppCompatActivity {
     protected VB mViewBinding;
@@ -65,17 +69,22 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends AppCompat
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (enableEventBus()) EventBus.getDefault().unregister(this);
+        if (enableEventBus())
+            EventBus.getDefault().unregister(this);
         ActivityController.removeActivity(this);
     }
-
-    protected abstract boolean enableEventBus();
-
-    protected abstract boolean enableTransparentStatus();
 
     protected abstract int getLayoutId();
 
     protected abstract void initActivity(Bundle savedInstanceState);
+
+    protected boolean enableTransparentStatus() {
+        return false;
+    }
+
+    protected boolean enableEventBus() {
+        return false;
+    }
 
     protected void setListener() {
 
