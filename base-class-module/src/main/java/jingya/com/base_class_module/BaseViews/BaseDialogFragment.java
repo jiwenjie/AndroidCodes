@@ -11,7 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public abstract class BaseDialogFragment<VB extends ViewDataBinding> extends DialogFragment {
     protected VB mViewBinding;

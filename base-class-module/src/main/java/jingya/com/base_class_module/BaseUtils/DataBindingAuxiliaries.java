@@ -12,7 +12,8 @@ import com.bumptech.glide.request.RequestOptions;
 import java.io.File;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public class DataBindingAuxiliaries {
 

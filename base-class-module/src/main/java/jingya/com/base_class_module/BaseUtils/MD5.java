@@ -3,7 +3,8 @@ package jingya.com.base_class_module.BaseUtils;
 import java.security.MessageDigest;
 
 /**
- * @author kuky.
+ * @author kuky
+ * @description
  */
 
 public class MD5 {

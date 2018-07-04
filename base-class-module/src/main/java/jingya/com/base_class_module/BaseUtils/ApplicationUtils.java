@@ -12,7 +12,8 @@ import java.security.MessageDigest;
 import java.security.Permission;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public class ApplicationUtils {
 

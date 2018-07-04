@@ -34,7 +34,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public class GeneralUtils {
 

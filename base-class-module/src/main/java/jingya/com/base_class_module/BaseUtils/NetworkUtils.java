@@ -8,7 +8,8 @@ import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 @SuppressLint("MissingPermission")
 public class NetworkUtils {

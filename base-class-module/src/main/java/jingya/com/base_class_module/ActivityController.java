@@ -6,9 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Kuky
- *         <p>
- *         Activity 管理类
+ * @author kuky
+ * @description Activity 管理类
  */
 public class ActivityController {
     private static List<Activity> activities = new ArrayList<>();

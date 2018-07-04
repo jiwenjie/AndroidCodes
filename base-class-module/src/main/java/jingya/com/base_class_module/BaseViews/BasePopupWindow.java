@@ -12,7 +12,8 @@ import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public abstract class BasePopupWindow<VB extends ViewDataBinding> extends PopupWindow {
     protected Context mContext;

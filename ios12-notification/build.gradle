@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+
+def configs = rootProject.ext
+
+android {
+    compileSdkVersion configs.compileSdkVersion
+    buildToolsVersion configs.buildToolsVersion
+
+    defaultConfig {
+        applicationId "jingya.com.floatingview"
+        minSdkVersion configs.minSdkVersion
+        targetSdkVersion configs.targetSdkVersion
+        versionCode configs.versionCode
+        versionName configs.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation "junit:junit:$configs.junit"
+    androidTestImplementation "com.android.support.test:runner:$configs.runner"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$configs.espressoCore"
+    implementation project(path: ':base-class-module')
+}

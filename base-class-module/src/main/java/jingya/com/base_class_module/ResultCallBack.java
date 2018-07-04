@@ -1,9 +1,8 @@
 package jingya.com.base_class_module;
 
 /**
- * @author Kuky
- *         <p>
- *         网络数据请求回调
+ * @author kuky
+ * @description 网络数据请求回调
  */
 public class ResultCallBack {
 

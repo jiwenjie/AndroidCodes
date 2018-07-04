@@ -15,7 +15,8 @@ import android.view.WindowManager;
 import java.lang.reflect.Method;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public class ScreenUtils {
     /**

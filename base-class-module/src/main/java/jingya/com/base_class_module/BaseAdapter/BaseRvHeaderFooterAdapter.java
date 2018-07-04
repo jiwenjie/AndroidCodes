@@ -16,7 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public abstract class BaseRvHeaderFooterAdapter<T> extends RecyclerView.Adapter<BaseRvHeaderFooterAdapter.BaseHeaderFooterHolder> {
     private static final int HEADER = 0x00100000;

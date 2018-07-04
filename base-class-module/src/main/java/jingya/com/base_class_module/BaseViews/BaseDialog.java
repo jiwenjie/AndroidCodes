@@ -12,7 +12,8 @@ import jingya.com.base_class_module.R;
 
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public abstract class BaseDialog<VB extends ViewDataBinding> extends Dialog {
     protected VB mViewBinding;

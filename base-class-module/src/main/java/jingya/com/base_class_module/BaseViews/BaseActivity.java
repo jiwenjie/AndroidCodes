@@ -24,7 +24,8 @@ import jingya.com.base_class_module.ActivityController;
 import jingya.com.base_class_module.PermissionListener;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public abstract class BaseActivity<VB extends ViewDataBinding> extends AppCompatActivity {
     protected VB mViewBinding;

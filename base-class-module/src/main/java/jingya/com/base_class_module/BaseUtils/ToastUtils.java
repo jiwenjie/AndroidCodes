@@ -5,7 +5,8 @@ import android.view.Gravity;
 import android.widget.Toast;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public class ToastUtils {
     private static Toast mToast;

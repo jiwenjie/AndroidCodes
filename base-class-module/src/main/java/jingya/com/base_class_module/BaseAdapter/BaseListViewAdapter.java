@@ -11,7 +11,8 @@ import android.widget.BaseAdapter;
 import java.util.List;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public abstract class BaseListViewAdapter<T, VB extends ViewDataBinding> extends BaseAdapter {
     protected VB mViewBinding;

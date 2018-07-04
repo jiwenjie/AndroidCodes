@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/django_rest" />
             <option value="$PROJECT_DIR$/floatint-view" />
             <option value="$PROJECT_DIR$/ios-notification" />
+            <option value="$PROJECT_DIR$/ios12-notification" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

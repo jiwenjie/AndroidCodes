@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ios12-notification</string>
+
+    <string name="recent_notification">Recent</string>
+    <string name="notification_time_now">now</string>
+    <string name="notification_time_hours">h ago</string>
+    <string name="notification_time_days">days ago</string>
+    <string name="notification_time_minutes">m ago</string>
+
+    <string-array name="week_names">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+</resources>

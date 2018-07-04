@@ -1,8 +1,6 @@
 package jingya.com.base_class_module;
 
-import android.content.RestrictionsManager;
 import android.support.annotation.NonNull;
-
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,9 +17,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * @author Kuky
- *         <p>
- *         Retrofit 管理类
+ * @author kuky
+ * @description Retrofit 管理类
  */
 public class RetrofitApiManager {
     private static final String TAG = "RetrofitApiManager";

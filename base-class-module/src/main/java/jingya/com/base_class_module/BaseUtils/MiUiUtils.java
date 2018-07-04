@@ -13,7 +13,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public class MiUiUtils {
     private static final String KEY_MI_UI_VERSION_CODE = "ro.miui.ui.version.code";

@@ -13,7 +13,8 @@ import android.view.ViewGroup;
 import org.greenrobot.eventbus.EventBus;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public abstract class BaseFragment<VB extends ViewDataBinding> extends Fragment {
     protected VB mViewBinding;

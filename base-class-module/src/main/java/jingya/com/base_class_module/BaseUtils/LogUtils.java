@@ -7,7 +7,8 @@ import jingya.com.base_class_module.BuildConfig;
 
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 public class LogUtils {
     private static String className;

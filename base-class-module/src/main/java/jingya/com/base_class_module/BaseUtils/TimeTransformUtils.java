@@ -7,7 +7,8 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * @author Kuky
+ * @author kuky
+ * @description
  */
 
 public class TimeTransformUtils {
@@ -23,7 +24,7 @@ public class TimeTransformUtils {
             return "";
         }
         if (TextUtils.isEmpty(format)) format = "yyyy-MM-dd HH:mm:ss";
-        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.CHINA);
+        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.getDefault());
         return sdf.format(new Date(Long.valueOf(seconds + "000")));
     }
 
@@ -36,7 +37,7 @@ public class TimeTransformUtils {
      */
     public static String timeStamp2Date(long mills, String format) {
         if (TextUtils.isEmpty(format)) format = "yyyy-MM-dd HH:mm:ss";
-        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.CHINA);
+        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.getDefault());
         return sdf.format(new Date(mills));
     }
 
@@ -49,7 +50,7 @@ public class TimeTransformUtils {
      */
     public static String date2TimeStamp(String date, String format) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.CHINA);
+            SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.getDefault());
             return String.valueOf(sdf.parse(date).getTime() / 1000);
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,7 +60,7 @@ public class TimeTransformUtils {
 
     public static String date2String(Date date, String format) {
         if (TextUtils.isEmpty(format)) format = "yyyy-MM-dd HH:mm:ss";
-        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.CHINA);
+        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.getDefault());
         return sdf.format(date);
     }
 }
