@@ -7,7 +7,7 @@ android {
     buildToolsVersion configs.buildToolsVersion
 
     defaultConfig {
-        applicationId "jingya.com.floatingview"
+        applicationId "jingya.com.ios12_notification"
         minSdkVersion configs.minSdkVersion
         targetSdkVersion configs.targetSdkVersion
         versionCode configs.versionCode

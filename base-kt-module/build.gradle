@@ -41,6 +41,7 @@ dependencies {
      * android ktx
      */
     api "androidx.core:core-ktx:$configs.ktx"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     /**
      * Android Design
      */
@@ -79,7 +80,6 @@ dependencies {
      * CircleImageView
      */
     api "de.hdodenhof:circleimageview:$configs.circleimageview"
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 repositories {
