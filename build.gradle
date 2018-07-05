@@ -38,7 +38,7 @@ ext {
     junit = "4.12"
     runner = "1.0.2"
     espressoCore = "3.0.2"
-    ktx = "1.0.0-beta01"
+    ktx = "0.3"
     constraintLayout = "1.1.2"
     androidDesign = "27.1.1"
     glide = "4.7.1"
