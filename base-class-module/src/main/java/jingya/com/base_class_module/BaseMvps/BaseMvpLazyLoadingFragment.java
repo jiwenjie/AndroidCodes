@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.greenrobot.eventbus.EventBus;
-
 /**
  * @author kuky
  * @description MVP 下懒加载 fragment 基类
@@ -34,15 +32,13 @@ public abstract class BaseMvpLazyLoadingFragment<V extends BaseMvpViewImpl, P ex
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (enabledEventBus())
-            EventBus.getDefault().register(this);
-
         mViewBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         initFragment(savedInstanceState);
         mPresenter = initPresenter();
         mPresenter.attach((V) this);
         presenterActions();
         setListener();
+        handleRxBus();
         return mViewBinding.getRoot();
     }
 
@@ -78,8 +74,6 @@ public abstract class BaseMvpLazyLoadingFragment<V extends BaseMvpViewImpl, P ex
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (enabledEventBus())
-            EventBus.getDefault().unregister(this);
         mPresenter.detach();
     }
 
@@ -99,15 +93,12 @@ public abstract class BaseMvpLazyLoadingFragment<V extends BaseMvpViewImpl, P ex
 
     protected abstract void lazyLoading();
 
-    protected boolean enabledEventBus() {
-        return false;
-    }
-
     protected void presenterActions() {
-
     }
 
     protected void setListener() {
+    }
 
+    protected void handleRxBus() {
     }
 }

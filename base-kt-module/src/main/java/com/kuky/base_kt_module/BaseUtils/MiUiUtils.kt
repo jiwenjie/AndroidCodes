@@ -1,5 +1,6 @@
 package com.kuky.baselib.baseUtils
 
+import android.annotation.SuppressLint
 import android.app.AppOpsManager
 import android.content.Context
 import android.os.Binder
@@ -19,6 +20,7 @@ object MiUiUtils {
     private const val KEY_MI_UI_VERSION_NAME = "ro.miui.ui.version.name"
     private const val KEY_MI_UI_INTERNAL_STORAGE = "ro.miui.internal.storage"
 
+    @SuppressLint("ObsoleteSdkInt")
     fun checkAppOps(context: Context, op: String): Boolean {
         if (isMiUi(context))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -31,7 +33,7 @@ object MiUiUtils {
 
     private fun isMiUi(context: Context): Boolean {
         val properties = Properties()
-        var isMiUi: Boolean = true
+        val isMiUi: Boolean
 
         val miUi: String? = SharePreferencesUtils.getString(context, "is_mi_ui")
 

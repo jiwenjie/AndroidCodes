@@ -66,6 +66,5 @@ public abstract class BaseDialog<VB extends ViewDataBinding> extends Dialog {
     protected abstract int getLayoutId();
 
     protected void initDialogView() {
-
     }
 }

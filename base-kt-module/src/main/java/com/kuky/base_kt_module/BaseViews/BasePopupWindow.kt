@@ -43,7 +43,7 @@ abstract class BasePopupWindow<VB : ViewDataBinding>(context: Context, animStyle
         (mContext as Activity).window.attributes = lp
     }
 
-    abstract fun getLayoutId(): Int
+    protected abstract fun getLayoutId(): Int
 
-    fun initPopupView(){}
+    protected open fun initPopupView(){}
 }

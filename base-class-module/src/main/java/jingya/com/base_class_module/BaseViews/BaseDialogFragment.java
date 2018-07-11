@@ -49,6 +49,5 @@ public abstract class BaseDialogFragment<VB extends ViewDataBinding> extends Dia
     protected abstract int getLayoutId();
 
     protected void initDialogFragment() {
-
     }
 }

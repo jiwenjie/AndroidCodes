@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 def configs = rootProject.ext
 
@@ -37,6 +38,7 @@ dependencies {
     testImplementation "junit:junit:$configs.junit"
     androidTestImplementation "com.android.support.test:runner:$configs.runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$configs.espressoCore"
+    kapt "com.android.databinding:compiler:$configs.dataBindingCompiler"
     /**
      * android ktx
      */
@@ -67,10 +69,6 @@ dependencies {
     api "com.squareup.retrofit2:adapter-rxjava2:$configs.retrofit"
     api "com.squareup.retrofit2:converter-scalars:$configs.retrofit"
     api "com.squareup.okhttp3:logging-interceptor:$configs.okLogging"
-    /**
-     * EventBus
-     */
-    api "org.greenrobot:eventbus:$configs.eventbus"
     /**
      * LeakCanary
      */

@@ -1,5 +1,6 @@
 package com.kuky.baselib.baseMvpClass
 
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -13,7 +14,6 @@ import android.view.View
 import android.view.WindowManager
 import com.kuky.base_kt_module.ActivityController
 import com.kuky.base_kt_module.PermissionListener
-import org.greenrobot.eventbus.EventBus
 
 /**
  * @author kuky
@@ -24,13 +24,13 @@ abstract class BaseMvpActivity<in V : BaseMvpViewImpl, P : BaseMvpPresenter<V>, 
     protected lateinit var mPresenter: P
     private var mOnPermissionLister: PermissionListener? = null
 
+    @SuppressLint("ObsoleteSdkInt")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (enabledEventBus()) EventBus.getDefault().register(this)
-
         if (enableTransparentStatus()) {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT
+                    && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 val winParam: WindowManager.LayoutParams = window.attributes
                 val bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
                 winParam.flags = winParam.flags or bits
@@ -53,6 +53,7 @@ abstract class BaseMvpActivity<in V : BaseMvpViewImpl, P : BaseMvpPresenter<V>, 
         mPresenter.attachView(this as V)
         presenterActions()
         setListener()
+        handleRxBus()
     }
 
     override fun onResume() {
@@ -72,27 +73,25 @@ abstract class BaseMvpActivity<in V : BaseMvpViewImpl, P : BaseMvpPresenter<V>, 
 
     override fun onDestroy() {
         super.onDestroy()
-        if (enabledEventBus()) EventBus.getDefault().unregister(this)
-
         mPresenter.detachView()
         ActivityController.removeActivity(this)
     }
 
-    abstract fun initPresenter(): P
+    protected abstract fun initPresenter(): P
 
-    abstract fun getLayoutId(): Int
+    protected abstract fun getLayoutId(): Int
 
-    abstract fun initActivity(savedInstanceState: Bundle?)
+    protected abstract fun initActivity(savedInstanceState: Bundle?)
 
-    fun enabledEventBus(): Boolean = false
+    protected open fun enableTransparentStatus(): Boolean = false
 
-    fun enableTransparentStatus(): Boolean = false
+    protected open fun presenterActions() {}
 
-    fun presenterActions() {}
+    protected open fun setListener() {}
 
-    fun setListener() {}
+    protected open fun handleRxBus() {}
 
-    fun onRuntimePermissionsAsk(permissions: Array<String>, permissionListener: PermissionListener) {
+    protected fun onRuntimePermissionsAsk(permissions: Array<String>, permissionListener: PermissionListener) {
         this.mOnPermissionLister = permissionListener
         val activity = ActivityController.getTopActivity()
         val deniedPermissions: MutableList<String> = mutableListOf()

@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/floatint-view/floatint-view.iml" filepath="$PROJECT_DIR$/floatint-view/floatint-view.iml" />
       <module fileurl="file://$PROJECT_DIR$/ios-notification/ios-notification.iml" filepath="$PROJECT_DIR$/ios-notification/ios-notification.iml" />
       <module fileurl="file://$PROJECT_DIR$/ios12-notification/ios12-notification.iml" filepath="$PROJECT_DIR$/ios12-notification/ios12-notification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rxbustest/rxbustest.iml" filepath="$PROJECT_DIR$/rxbustest/rxbustest.iml" />
     </modules>
   </component>
 </project>

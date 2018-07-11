@@ -60,10 +60,6 @@ dependencies {
     api "com.squareup.retrofit2:converter-scalars:$configs.retrofit"
     api "com.squareup.okhttp3:logging-interceptor:$configs.okLogging"
     /**
-     * EventBus
-     */
-    api "org.greenrobot:eventbus:$configs.eventbus"
-    /**
      * LeakCanary
      */
     debugApi "com.squareup.leakcanary:leakcanary-android:$configs.leakcanary"

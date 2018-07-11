@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import org.greenrobot.eventbus.EventBus
 
 /**
  * @author kuky
@@ -26,9 +25,9 @@ abstract class BaseLazyLoadingFragment<VB : ViewDataBinding> : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mViewBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
-        if (enabledEventBus()) EventBus.getDefault().register(this)
         initFragment(savedInstanceState)
         setListener()
+        handleRxBus()
         return mViewBinding.root
     }
 
@@ -42,11 +41,6 @@ abstract class BaseLazyLoadingFragment<VB : ViewDataBinding> : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if (enabledEventBus()) EventBus.getDefault().unregister(this)
-    }
-
     private fun tryLoad() {
         if (isPageCreated && isPageVisible) {
             lazyLoading()
@@ -55,13 +49,13 @@ abstract class BaseLazyLoadingFragment<VB : ViewDataBinding> : Fragment() {
         }
     }
 
-    abstract fun getLayoutId(): Int
+    protected abstract fun getLayoutId(): Int
 
-    abstract fun initFragment(savedInstanceState: Bundle?)
+    protected abstract fun initFragment(savedInstanceState: Bundle?)
 
-    abstract fun lazyLoading()
+    protected abstract fun lazyLoading()
 
-    fun enabledEventBus(): Boolean = false
+    protected open fun setListener() {}
 
-    fun setListener() {}
+    protected open fun handleRxBus() {}
 }

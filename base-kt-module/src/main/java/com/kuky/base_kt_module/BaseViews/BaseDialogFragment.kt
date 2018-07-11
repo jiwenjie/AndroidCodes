@@ -42,7 +42,7 @@ abstract class BaseDialogFragment<VB : ViewDataBinding> : DialogFragment() {
         dialog.window.setLayout(mWidth, mHeight)
     }
 
-    abstract fun getLayoutId(): Int
+    protected abstract fun getLayoutId(): Int
 
-    fun initDialogFragment() {}
+    protected open fun initDialogFragment() {}
 }

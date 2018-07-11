@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import org.greenrobot.eventbus.EventBus
 
 /**
  * @author Kuky
@@ -17,14 +16,13 @@ abstract class BaseMvpFragment<in V : BaseMvpViewImpl, P : BaseMvpPresenter<V>, 
     protected lateinit var mPresenter: P
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (enabledEventBus()) EventBus.getDefault().register(this)
-
         mViewBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         initFragment(savedInstanceState)
         mPresenter = initPresenter()
         mPresenter.attachView(this as V)
         presenterActions()
         setListener()
+        handleRxBus()
         return mViewBinding.root
     }
 
@@ -45,19 +43,18 @@ abstract class BaseMvpFragment<in V : BaseMvpViewImpl, P : BaseMvpPresenter<V>, 
 
     override fun onDestroy() {
         super.onDestroy()
-        if (enabledEventBus()) EventBus.getDefault().unregister(this)
         mPresenter.detachView()
     }
 
-    abstract fun initPresenter(): P
+    protected abstract fun initPresenter(): P
 
-    abstract fun getLayoutId(): Int
+    protected abstract fun getLayoutId(): Int
 
-    abstract fun initFragment(savedInstanceState: Bundle?)
+    protected abstract fun initFragment(savedInstanceState: Bundle?)
 
-    fun enabledEventBus(): Boolean = false
+    protected open fun presenterActions(){}
 
-    fun presenterActions(){}
+    protected open fun setListener(){}
 
-    fun setListener(){}
+    protected open fun handleRxBus(){}
 }

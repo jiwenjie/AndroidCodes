@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.greenrobot.eventbus.EventBus;
-
 /**
  * @author kuky
  * @description
@@ -25,14 +23,13 @@ public abstract class BaseMvpFragment<V extends BaseMvpViewImpl, P extends BaseM
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (enabledEventBus())
-            EventBus.getDefault().register(this);
         mViewBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         initFragment(savedInstanceState);
         mPresenter = initPresenter();
         mPresenter.attach((V) this);
         presenterActions();
         setListener();
+        handleRxBus();
         return mViewBinding.getRoot();
     }
 
@@ -54,28 +51,18 @@ public abstract class BaseMvpFragment<V extends BaseMvpViewImpl, P extends BaseM
         mPresenter.onPause();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.detach();
-        if (enabledEventBus()) EventBus.getDefault().unregister(this);
-    }
-
     protected abstract int getLayoutId();
 
     protected abstract void initFragment(Bundle savedInstanceState);
 
     protected abstract P initPresenter();
 
-    protected boolean enabledEventBus() {
-        return false;
-    }
-
     protected void presenterActions() {
-
     }
 
     protected void setListener() {
+    }
 
+    protected void handleRxBus() {
     }
 }

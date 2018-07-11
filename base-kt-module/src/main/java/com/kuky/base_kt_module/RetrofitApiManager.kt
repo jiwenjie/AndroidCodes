@@ -20,14 +20,16 @@ object RetrofitApiManager {
     private var mRetrofit: Retrofit? = null
 
     fun provideClient(baseUrl: String): Retrofit {
-        if (mRetrofit == null) {
-            mRetrofit = Retrofit.Builder()
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(genericOkClient())
-                    .build()
-        }
-
+        if (mRetrofit == null)
+            @Synchronized
+            if (mRetrofit == null) {
+                mRetrofit = Retrofit.Builder()
+                        .baseUrl(baseUrl)
+                        .client(genericOkClient())
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build()
+            }
         return mRetrofit!!
     }
 

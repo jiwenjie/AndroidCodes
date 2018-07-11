@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import org.greenrobot.eventbus.EventBus
 
 /**
  * @author kuky
@@ -17,23 +16,18 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
     protected lateinit var mViewBinding: VB
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (enabledEventBus()) EventBus.getDefault().register(this)
         mViewBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         initFragment(savedInstanceState)
         setListener()
+        handleRxBus()
         return mViewBinding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if (enabledEventBus()) EventBus.getDefault().unregister(this)
-    }
+    protected abstract fun getLayoutId(): Int
 
-    abstract fun getLayoutId(): Int
+    protected abstract fun initFragment(savedInstanceState: Bundle?)
 
-    abstract fun initFragment(savedInstanceState: Bundle?)
+    protected open fun setListener() {}
 
-    fun enabledEventBus(): Boolean = false
-
-    fun setListener() {}
+    protected open fun handleRxBus() {}
 }

@@ -1,5 +1,6 @@
 package jingya.com.base_class_module.BaseMvps;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
@@ -14,8 +15,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +33,10 @@ public abstract class BaseMvpActivity<V extends BaseMvpViewImpl, P extends BaseM
     protected P mPresenter;
     protected VB mViewBinding;
 
+    @SuppressLint("ObsoleteSdkInt")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (enableEventBus()) EventBus.getDefault().register(this);
 
         if (enableTransparentStatus()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
@@ -65,6 +63,7 @@ public abstract class BaseMvpActivity<V extends BaseMvpViewImpl, P extends BaseM
         mPresenter.attach((V) this);
         presenterActions();
         setListener();
+        handleRxBus();
     }
 
     @Override
@@ -88,8 +87,6 @@ public abstract class BaseMvpActivity<V extends BaseMvpViewImpl, P extends BaseM
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (enableEventBus())
-            EventBus.getDefault().unregister(this);
         mPresenter.detach();
         ActivityController.removeActivity(this);
     }
@@ -104,16 +101,13 @@ public abstract class BaseMvpActivity<V extends BaseMvpViewImpl, P extends BaseM
         return false;
     }
 
-    protected boolean enableEventBus() {
-        return false;
-    }
-
     protected void presenterActions() {
-
     }
 
     protected void setListener() {
+    }
 
+    protected void handleRxBus() {
     }
 
     /**
@@ -122,7 +116,7 @@ public abstract class BaseMvpActivity<V extends BaseMvpViewImpl, P extends BaseM
      * @param permissions
      * @param listener
      */
-    public void onRuntimePermissionsAsk(String[] permissions, PermissionListener listener) {
+    protected void onRuntimePermissionsAsk(String[] permissions, PermissionListener listener) {
         Activity topActivity = ActivityController.getTopActivity();
         List<String> deniedPermissions = new ArrayList<>();
         permissionListener = listener;

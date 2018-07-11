@@ -230,7 +230,7 @@ abstract class BaseRvHeaderFooterAdapter<T : Any, VB : ViewDataBinding>(context:
         }
     }
 
-    fun getItemType(position: Int): Int = 0
+    open fun getItemType(position: Int): Int = 0
 
     override fun getItemCount(): Int {
         return getHeaderCount() + getDataCount() + getFooterCount()

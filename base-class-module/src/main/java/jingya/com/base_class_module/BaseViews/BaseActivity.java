@@ -1,5 +1,6 @@
 package jingya.com.base_class_module.BaseViews;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
@@ -15,8 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,6 @@ import jingya.com.base_class_module.PermissionListener;
  * @author kuky
  * @description Activity 基类
  * <p>
- * 支持 EventBus {@link #enableEventBus()}
  * 支持透明状态栏 {@link #enableTransparentStatus()}
  * 支持动态申请权限 {@link #onRuntimePermissionsAsk(String[], PermissionListener)}
  */
@@ -35,11 +33,10 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends AppCompat
     protected VB mViewBinding;
     private PermissionListener permissionListener;
 
+    @SuppressLint("ObsoleteSdkInt")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (enableEventBus()) EventBus.getDefault().register(this);
 
         if (enableTransparentStatus()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
@@ -60,17 +57,15 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends AppCompat
         }
 
         ActivityController.addActivity(this);
-
         mViewBinding = DataBindingUtil.setContentView(this, getLayoutId());
         initActivity(savedInstanceState);
         setListener();
+        handleRxBus();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (enableEventBus())
-            EventBus.getDefault().unregister(this);
         ActivityController.removeActivity(this);
     }
 
@@ -82,12 +77,10 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends AppCompat
         return false;
     }
 
-    protected boolean enableEventBus() {
-        return false;
+    protected void setListener() {
     }
 
-    protected void setListener() {
-
+    protected void handleRxBus() {
     }
 
     /**
@@ -96,7 +89,7 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends AppCompat
      * @param permissions
      * @param listener
      */
-    public void onRuntimePermissionsAsk(String[] permissions, PermissionListener listener) {
+    protected void onRuntimePermissionsAsk(String[] permissions, PermissionListener listener) {
         Activity topActivity = ActivityController.getTopActivity();
         List<String> deniedPermissions = new ArrayList<>();
         permissionListener = listener;

@@ -1,5 +1,6 @@
 package com.kuky.baselib.baseClass
 
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -13,7 +14,6 @@ import android.view.View
 import android.view.WindowManager
 import com.kuky.base_kt_module.ActivityController
 import com.kuky.base_kt_module.PermissionListener
-import org.greenrobot.eventbus.EventBus
 
 /**
  * @author kuky
@@ -23,12 +23,13 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity() {
     protected lateinit var mViewBinding: VB
     private var mPermissionListener: PermissionListener? = null
 
+    @SuppressLint("ObsoleteSdkInt")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (enabledEventBus()) EventBus.getDefault().register(this)
 
         if (enableTransparentStatus()) {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT &&
+                    Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 val winParam: WindowManager.LayoutParams = window.attributes
                 val bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
                 winParam.flags = winParam.flags or bits
@@ -48,23 +49,23 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity() {
         mViewBinding = DataBindingUtil.setContentView(this, getLayoutId())
         initActivity(savedInstanceState)
         setListener()
+        handleRxBus()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if (enabledEventBus()) EventBus.getDefault().unregister(this)
         ActivityController.removeActivity(this)
     }
 
-    abstract fun getLayoutId(): Int
+    protected abstract fun getLayoutId(): Int
 
-    abstract fun initActivity(savedInstanceState: Bundle?)
+    protected abstract fun initActivity(savedInstanceState: Bundle?)
 
-    fun enabledEventBus(): Boolean = false
+    protected open fun enableTransparentStatus(): Boolean = false
 
-    fun enableTransparentStatus(): Boolean = false
+    protected open fun setListener() {}
 
-    fun setListener() {}
+    protected open fun handleRxBus() {}
 
     protected fun onRuntimePermissionsAsk(permissions: kotlin.Array<String>, listener: PermissionListener) {
         this.mPermissionListener = listener

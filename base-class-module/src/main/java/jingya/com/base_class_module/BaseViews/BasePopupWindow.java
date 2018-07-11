@@ -59,6 +59,5 @@ public abstract class BasePopupWindow<VB extends ViewDataBinding> extends PopupW
     protected abstract int getLayoutId();
 
     protected void initPopupView() {
-
     }
 }

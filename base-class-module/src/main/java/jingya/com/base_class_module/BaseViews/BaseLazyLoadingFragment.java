@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.greenrobot.eventbus.EventBus;
-
 /**
  * @author kuky
  * @description 懒加载 fragment 基类
@@ -31,11 +29,10 @@ public abstract class BaseLazyLoadingFragment<VB extends ViewDataBinding> extend
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (enabledEventBus())
-            EventBus.getDefault().register(this);
         mViewBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         initFragment(savedInstanceState);
         setListener();
+        handleRxBus();
         return mViewBinding.getRoot();
     }
 
@@ -48,13 +45,6 @@ public abstract class BaseLazyLoadingFragment<VB extends ViewDataBinding> extend
         } else {
             isPageVisible = false;
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (enabledEventBus())
-            EventBus.getDefault().unregister(this);
     }
 
     private void tryLoad() {
@@ -71,11 +61,9 @@ public abstract class BaseLazyLoadingFragment<VB extends ViewDataBinding> extend
 
     protected abstract void lazyLoading();
 
-    protected boolean enabledEventBus() {
-        return false;
+    protected void setListener() {
     }
 
-    protected void setListener() {
-
+    protected void handleRxBus() {
     }
 }

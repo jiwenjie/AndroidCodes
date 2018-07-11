@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/floatint-view" />
             <option value="$PROJECT_DIR$/ios-notification" />
             <option value="$PROJECT_DIR$/ios12-notification" />
+            <option value="$PROJECT_DIR$/rxbustest" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
