@@ -1,4 +1,4 @@
-package com.kuky.baselib.baseAdapter
+package com.kuky.base_kt_module.BaseAdapters
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

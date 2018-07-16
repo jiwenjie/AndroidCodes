@@ -1,10 +1,8 @@
 package com.kuky.base_kt_module.BaseUtils
 
 import android.content.Context
-import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
@@ -20,7 +18,7 @@ object AssetsLoader {
         var inputStream: InputStream? = null
         try {
             inputStream = context.resources.assets.open(fileName)
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             e.printStackTrace()
         }
 
@@ -36,17 +34,14 @@ object AssetsLoader {
             bufferedReader = BufferedReader(inputReader)
 
             var line: String
-
             do {
                 line = bufferedReader.readLine()
                 if (line != null) result.append(line) else break
             } while (true)
 
-
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
-
             if (inputStream != null) {
                 try {
                     inputStream.close()
@@ -85,8 +80,6 @@ object AssetsLoader {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-
         return image
     }
-
 }

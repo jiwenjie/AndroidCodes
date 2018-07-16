@@ -2,9 +2,9 @@ package com.kuky.recorderwithaudio
 
 import android.content.Intent
 import android.os.Bundle
+import com.kuky.base_kt_module.BaseUtils.ToastUtils
+import com.kuky.base_kt_module.BaseViews.BaseActivity
 import com.kuky.base_kt_module.PermissionListener
-import com.kuky.baselib.baseClass.BaseActivity
-import com.kuky.baselib.baseUtils.ToastUtils
 import com.kuky.recorderwithaudio.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 

@@ -1,4 +1,4 @@
-package com.kuky.baselib.baseClass
+package com.kuky.base_kt_module.BaseViews
 
 import android.app.Dialog
 import android.content.Context

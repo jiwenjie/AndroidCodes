@@ -1,4 +1,4 @@
-package com.kuky.baselib.baseAdapter
+package com.kuky.base_kt_module.BaseAdapters
 
 import android.content.Context
 import android.databinding.DataBindingUtil
@@ -72,15 +72,9 @@ abstract class BaseRvHeaderFooterAdapter<T : Any, VB : ViewDataBinding>(context:
         notifyItemInserted(insertPos)
     }
 
-    fun getHeaderBindings(): MutableList<ViewDataBinding> {
-        val headers = (HEADER until getHeaderCount() + HEADER).map { mHeaderBindings.get(it) }
-        return headers as MutableList
-    }
+    fun getHeaderBindings(): List<ViewDataBinding> = (HEADER until getHeaderCount() + HEADER).map { mHeaderBindings.get(it) }
 
-    fun getFooterBindings(): MutableList<ViewDataBinding> {
-        val footers = (FOOTER until getFooterCount() + FOOTER).map { mFooterBindings.get(it) }
-        return footers as MutableList
-    }
+    fun getFooterBindings(): List<ViewDataBinding> = (FOOTER until getFooterCount() + FOOTER).map { mFooterBindings.get(it) }
 
     fun updateAdapterData(data: MutableList<T>?) {
         this.mData = data

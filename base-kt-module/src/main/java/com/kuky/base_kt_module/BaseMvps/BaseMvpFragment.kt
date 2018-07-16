@@ -1,4 +1,4 @@
-package com.kuky.baselib.baseMvpClass
+package com.kuky.base_kt_module.BaseMvps
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -10,6 +10,7 @@ import android.view.ViewGroup
 
 /**
  * @author Kuky
+ * @description
  */
 abstract class BaseMvpFragment<in V : BaseMvpViewImpl, P : BaseMvpPresenter<V>, VB : ViewDataBinding> : Fragment() {
     protected lateinit var mViewBinding: VB

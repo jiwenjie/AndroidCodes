@@ -1,4 +1,4 @@
-package com.kuky.baselib.baseMvpClass
+package com.kuky.base_kt_module.BaseMvps
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding

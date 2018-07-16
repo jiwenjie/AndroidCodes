@@ -1,4 +1,4 @@
-package com.kuky.baselib.baseAdapter
+package com.kuky.base_kt_module.BaseAdapters
 
 import android.content.Context
 import android.databinding.DataBindingUtil

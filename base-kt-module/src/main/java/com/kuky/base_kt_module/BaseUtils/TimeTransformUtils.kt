@@ -1,4 +1,4 @@
-package com.kuky.baselib.baseUtils
+package com.kuky.base_kt_module.BaseUtils
 
 import android.text.TextUtils
 import java.text.SimpleDateFormat

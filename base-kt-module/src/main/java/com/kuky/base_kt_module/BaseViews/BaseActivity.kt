@@ -1,4 +1,4 @@
-package com.kuky.baselib.baseClass
+package com.kuky.base_kt_module.BaseViews
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager

@@ -14,7 +14,7 @@ import android.os.IBinder
 import android.support.v4.app.NotificationCompat
 import android.text.TextUtils
 import android.text.format.DateUtils
-import com.kuky.baselib.baseUtils.ScreenUtils
+import com.kuky.base_kt_module.BaseUtils.ScreenUtils
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

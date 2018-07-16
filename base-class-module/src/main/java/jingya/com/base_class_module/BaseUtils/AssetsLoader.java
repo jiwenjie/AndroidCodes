@@ -20,7 +20,7 @@ public class AssetsLoader {
         InputStream inputStream = null;
         try {
             inputStream = context.getResources().getAssets().open(fileName);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return getText(inputStream);
