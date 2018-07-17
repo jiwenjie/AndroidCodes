@@ -10,6 +10,7 @@ import android.widget.BaseAdapter
 
 /**
  * @author Kuky
+ * @description
  */
 abstract class BaseListViewAdapter<T : Any, VB : ViewDataBinding>(context: Context, data: MutableList<T>?) : BaseAdapter() {
     protected var mContext: Context = context

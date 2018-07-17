@@ -6,12 +6,13 @@ import android.support.v4.app.FragmentPagerAdapter
 
 /**
  * @author Kuky
+ * @description
  */
-class BaseFragmentPagerAdapter(fm: FragmentManager, fragments: MutableList<Fragment>, titles: Array<String>)
+class BaseFragmentPagerAdapter(fm: FragmentManager, fragments: MutableList<Fragment>, titles: ArrayList<String>)
     : FragmentPagerAdapter(fm) {
 
     private var mFragments: MutableList<Fragment>? = null
-    private var mTitles: Array<String>? = null
+    private var mTitles: ArrayList<String>? = null
 
     init {
         this.mFragments = fragments
