@@ -18,5 +18,12 @@
             android:layout_height="wrap_content"
             android:text="record" />
 
+        <Button
+            android:id="@+id/another"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/record"
+            android:text="Another" />
+
     </RelativeLayout>
 </layout>

@@ -30,7 +30,7 @@ android {
             }
         }
     }
-    
+
     dataBinding {
         enabled = true
     }
@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation "junit:junit:$configs.junit"
     androidTestImplementation "com.android.support.test:runner:$configs.runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$configs.espressoCore"
