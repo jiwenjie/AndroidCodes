@@ -9,7 +9,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath 'com.android.tools.build:gradle:3.1.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -38,7 +38,6 @@ ext {
     junit = "4.12"
     runner = "1.0.2"
     espressoCore = "3.0.2"
-    dataBindingCompiler = "3.1.3"
     ktx = "0.3"
     constraintLayout = "1.1.2"
     androidDesign = "27.1.1"

@@ -46,7 +46,6 @@ dependencies {
     testImplementation "junit:junit:$configs.junit"
     androidTestImplementation "com.android.support.test:runner:$configs.runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$configs.espressoCore"
-    kapt "com.android.databinding:compiler:$configs.dataBindingCompiler"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(path: ':base-kt-module')
 }

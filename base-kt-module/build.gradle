@@ -38,7 +38,6 @@ dependencies {
     testImplementation "junit:junit:$configs.junit"
     androidTestImplementation "com.android.support.test:runner:$configs.runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$configs.espressoCore"
-    kapt "com.android.databinding:compiler:$configs.dataBindingCompiler"
     /**
      * android ktx
      */
