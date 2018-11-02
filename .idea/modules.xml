@@ -4,12 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidCodes.iml" filepath="$PROJECT_DIR$/AndroidCodes.iml" />
       <module fileurl="file://$PROJECT_DIR$/base-class-module/base-class-module.iml" filepath="$PROJECT_DIR$/base-class-module/base-class-module.iml" />
-      <module fileurl="file://$PROJECT_DIR$/base-kt-module/base-kt-module.iml" filepath="$PROJECT_DIR$/base-kt-module/base-kt-module.iml" />
       <module fileurl="file://$PROJECT_DIR$/django_rest/django_rest.iml" filepath="$PROJECT_DIR$/django_rest/django_rest.iml" />
       <module fileurl="file://$PROJECT_DIR$/floatint-view/floatint-view.iml" filepath="$PROJECT_DIR$/floatint-view/floatint-view.iml" />
       <module fileurl="file://$PROJECT_DIR$/ios-notification/ios-notification.iml" filepath="$PROJECT_DIR$/ios-notification/ios-notification.iml" />
       <module fileurl="file://$PROJECT_DIR$/ios12-notification/ios12-notification.iml" filepath="$PROJECT_DIR$/ios12-notification/ios12-notification.iml" />
-      <module fileurl="file://$PROJECT_DIR$/recorderwithaudio/recorderwithaudio.iml" filepath="$PROJECT_DIR$/recorderwithaudio/recorderwithaudio.iml" />
     </modules>
   </component>
 </project>
